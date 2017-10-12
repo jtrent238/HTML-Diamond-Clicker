@@ -121,6 +121,14 @@
                     miners--;
                     makers--;
                     drills--;
+			
+			//Save cookies to browser
+			document.cookie = "diamonds=" + diamonds;
+			document.cookie = "miners=" + miners;
+			document.cookie = "drills=" + drills;
+			document.cookie = "makers=" + makers;
+			document.cookie = "quarrys=" + quarrys;
+
 		}
 		</script>
 	</body>

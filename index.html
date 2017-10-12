@@ -17,7 +17,7 @@
 		
 		
 		<button onclick="saveGame()">Save Game</button> NOTICE: <span id="saveGame">Saves game to a browers cookie!</span>
-		
+		<p>Last Saved: <span id="lastSaved">00:00:00</span></p>
 		<script>
 			var diamonds = 0;
         		var miners = 0;
@@ -129,7 +129,7 @@
 			document.cookie = "drills=" + drills;
 			document.cookie = "makers=" + makers;
 			document.cookie = "quarrys=" + quarrys;
-
+			document.getElementById("lastSaved").innerHTML = lastSaved();
 		}
 		</script>
 	</body>

@@ -1,6 +1,24 @@
 <html>
 	<head>
 		<title>Diamond Clicker</title>
+		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+		<script>
+		window.addEventListener("load", function(){
+		window.cookieconsent.initialise({
+  		"palette": {
+    			"popup": {
+      				"background": "#000"
+    				},
+    			"button": {
+      				"background": "#f1d600"
+    				}
+  			},
+  		"content": {
+    			"message": "This website uses cookies to save your save data."
+  			}
+		})});
+		</script>
 		<script src="https://cdn.ravenjs.com/3.18.1/raven.min.js" crossorigin="anonymous"></script>
 		<script>
 			Raven.config('https://2bc1c33480984a7e8a83ee092d2d3cc5@sentry.io/229412').install()

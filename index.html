@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<h3><button onclick="diamondClick(1)">Mine Diamond</button> diamonds: <span id="diamonds">0</span></h3>
+		<h3>Diamonds</h3>
+		<p>Diamond Miners: <span id="miners">0</span>
+		<p>Diamond Drills: <span id="drills">0</span>
+	</head>
+	<body>
+		<button onclick="buyDiamondMiner()">Buy Diamond Miner</button> Cost: <span id="DiamondMinerCost">10</span>
+		<button onclick="buyDiamondDrill()">Buy Diamond Drill</button> Cost: <span id="DiamondDrillCost">200</span>
+		
+		<script>
+			var diamonds = 0;
+			var miners  = 0;
+			var drills = 0;
+			
+			diamonds = diamonds + 1;
+			function diamondClick(number){
+				diamonds = diamonds + number;
+				document.getElementById("diamonds").innerHTML = diamonds;
+			};
+			function buyDiamondMiner(){
+				var DiamondMinerCost = Math.floor(25 * Math.pow(3.2, DiamondMiner));
+				if (diamonds >= DiamondMinerCost){
+					DiamondMiner = DiamondMiner + 10;
+					diamonds = diamonds - DiamondMinerCost;
+					document.getElementById('DiamondMiner').innerHTML = DiamondMiner;
+					document.getElementById('diamonds').innerHTML = diamonds;
+				};
+					var nextCost = Math.floor(10 * Math.pow(3.2, DiamondMiner));
+					document.getElementById('DiamondMinerCost').innerHTML = nextCost;
+			
+			window.setInterval(function(){
+				diamondClick(drills);
+				}, 1000);
+		
+		function buyDiamondDrill(){
+				var DiamondDrillCost = Math.floor(25 * Math.pow(3.2, DiamondDrill));
+				if (diamonds >= DiamondDrillCost){
+					DiamondDrill = DiamondDrill + 10;
+					diamonds = diamonds - DiamondMinerCost;
+					document.getElementById('DiamondDrill').innerHTML = DiamondDrill;
+					document.getElementById('diamonds').innerHTML = diamonds;
+				};
+					var nextCost = Math.floor(10 * Math.pow(3.2, DiamondDrill));
+					document.getElementById('DiamondDrillCost').innerHTML = nextCost;
+		</script>
+	</body>
+</html>

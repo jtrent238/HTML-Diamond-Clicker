@@ -35,7 +35,7 @@
 			};
 			function buyDiamondMiner(){
 				var DiamondMinerCost = Math.floor(25 * Math.pow(3.2, DiamondMiner));
-				if (diamonds >= DiamondMinerCost){
+				if (diamonds > DiamondMinerCost){
 					DiamondMiner = DiamondMiner + 10;
 					diamonds = diamonds - DiamondMinerCost;
 					document.getElementById('DiamondMiner').innerHTML = DiamondMiner;

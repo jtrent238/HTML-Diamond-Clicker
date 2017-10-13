@@ -24,138 +24,72 @@
 			Raven.config('https://2bc1c33480984a7e8a83ee092d2d3cc5@sentry.io/229412').install()
 			Raven.isSetup()
 		</script>
-		<h3><button onclick="diamondClick()">Mine Diamond</button> diamonds: <span id="diamonds">0</span></h3>
+		<h3><button onclick="diamondClick()">Mine Diamond</button> diamonds: <span id="dcount">0</span></h3>
 		<h3>Diamonds</h3>
-		<p>Diamond Miners: <span id="miners">0</span>
-		<p>Diamond Drills: <span id="drills">0</span>
 	</head>
 	<body>
-		<button onclick="buyDiamondMiner()">Buy Diamond Miner</button> Cost: <span id="DiamondMinerCost">10</span>
-		<button onclick="buyDiamondDrill()">Buy Diamond Drill</button> Cost: <span id="DiamondDrillCost">200</span>
-		
-		
+
 		<p>Save / Load</p>
 		<button onclick="saveGame()">Save Game</button> NOTICE: <span id="saveGame">Saves game to a browers cookie!</span>
-		<button onclick="loadGame()">Save Game</button> NOTICE: <span id="loadGame">Loads game from a browers cookie!</span>
+		<button onclick="loadGame()">Load Game</button> NOTICE: <span id="loadGame">Loads game from a browers cookie!</span>
 		<p>Last Saved: <span id="lastSaved">00:00:00</span></p>
 		<script>
-			var diamonds = 0;
-        		var miners = 0;
-        		var minercost = 25;
-        		var drillcost = 200;
-       			var drills = 0;
-        		var makercost = 1000;
-       			var makers = 0;
-        		var quarrycost = 10000;
-        		var quarrys = 0;
-        		var istimeron = new boolean(true);
-        		var millionAchivement = new boolean(false);
-        		var TenMinersAchivement = new boolean(false);
-			
-			document.getElementById("diamonds").innerHTML = diamonds;
-			/*
-			function diamondClick(){
-				diamonds + 1;
-				document.getElementById("diamonds").innerHTML = diamonds;
-			};
-			function buyDiamondMiner(){
-				var DiamondMinerCost = Math.floor(25 * Math.pow(3.2, DiamondMiner));
-				if (diamonds > DiamondMinerCost){
-					DiamondMiner = DiamondMiner + 10;
-					diamonds = diamonds - DiamondMinerCost;
-					document.getElementById('DiamondMiner').innerHTML = DiamondMiner;
-					document.getElementById('diamonds').innerHTML = diamonds;
-				};
-					var nextCost = Math.floor(10 * Math.pow(3.2, DiamondMiner));
-					document.getElementById('DiamondMinerCost').innerHTML = nextCost;
-			
-			window.setInterval(function(){
-				diamondClick(drills);
-				}, 1000);
-		
-		function buyDiamondDrill(){
-				var DiamondDrillCost = Math.floor(25 * Math.pow(3.2, DiamondDrill));
-				if (diamonds >= DiamondDrillCost){
-					DiamondDrill = DiamondDrill + 10;
-					diamonds = diamonds - DiamondMinerCost;
-					document.getElementById('DiamondDrill').innerHTML = DiamondDrill;
-					document.getElementById('diamonds').innerHTML = diamonds;
-				};
-					var nextCost = Math.floor(10 * Math.pow(3.2, DiamondDrill));
-					document.getElementById('DiamondDrillCost').innerHTML = nextCost;
-		function saveGame(diamonds, miners,  drills,makers, quarrys){
-			
-			int d = Convert.ToInt32(diamondsstring, 2);
-                    	int m = Convert.ToInt32(minersstring, 2);
-                    	int dr = Convert.ToInt32(drillsstring, 2);
-                    	int ma = Convert.ToInt32(makersstring, 2);
-                    	int q = Convert.ToInt32(quarrystring, 2);
-                    	
-			diamonds = d;
-                    	miners = m;
-                    	drills = dr;
-                    	makers = ma;
-                    	quarrys = q;
-                    	miners++;
-                    	makers++;
-                    	drills++;
-                    	
-			quarrys++;
-                    if (miners > 1)
-                    {
-                        minercost = 35;
-                    }
-                    	else{
-                        	minercost = 25;
-                    	}
-                    if (makers > 1)
-                    {
-                        makercost = 1350;
-                    }
-                    	else
-                    	{
-                        	makercost = 1000;
-                    	}
-                    if (quarrys > 1)
-                    {
-                        quarrycost = 12000;
-                    }
-                    	else
-                    	{
-                        	quarrycost = 10000;
-                    	}
-                    if (drills > 1)
-                    {
-                        drillcost = 235;
-                    }
-                    	else
-                    	{
-                        	drillcost = 200;
-                    	}
-			
-                    minercost = minercost * miners;
-                    makercost = makercost * makers;
-                    drillcost = drillcost * drills;
-                    quarrycost = quarrycost * quarrys;
-			
-                    quarrys--;
-                    miners--;
-                    makers--;
-                    drills--;
-			
-			//Save cookies to browser
-			document.cookie = "diamonds=" + diamonds;
-			document.cookie = "miners=" + miners;
-			document.cookie = "drills=" + drills;
-			document.cookie = "makers=" + makers;
-			document.cookie = "quarrys=" + quarrys;
-			document.getElementById("lastSaved").innerHTML = lastSaved();*/
+		function getCookie(dcookie,){
+			var diamonds = "fa454c5a-1d4c-4607-9d88-4f2309fb40b6=";
 		}
-		</script>
-		<script>
+		function checkCookie() {
+			var diamonds=getCookie("fa454c5a-1d4c-4607-9d88-4f2309fb40b6")
+		}
+		function pageLoad() {
+			if firstload(true){
+				var diamonds = 0;
+				var miners = 0;
+				var minercost = 25;
+				var drillcost = 200;
+				var drills = 0;
+				var makercost = 1000;
+				var makers = 0;
+				var quarrycost = 10000;
+				var quarrys = 0;
+				var istimeron = new boolean(true);
+				var millionAchivement = new boolean(false);
+				var TenMinersAchivement = new boolean(false);
+			}
+			if firstload(false){
+				var diamonds = 0;
+				var miners = 0;
+				var minercost = 25;
+				var drillcost = 200;
+				var drills = 0;
+				var makercost = 1000;
+				var makers = 0;
+				var quarrycost = 10000;
+				var quarrys = 0;
+				var istimeron = new boolean(true);
+				var millionAchivement = new boolean(false);
+				var TenMinersAchivement = new boolean(false);
+			}
+		}
+		function saveGame() {
+					//Save cookies to browser
+			document.cookie = "0602016d-7949-43fd-8986-f7b0e61562bb=" firstload(boolean);
+			document.cookie = "fa454c5a-1d4c-4607-9d88-4f2309fb40b6=" + diamonds;
+			document.cookie = "b96cfeaa-cb36-4b26-a157-6275f763220d=" + miners;
+				document.cookie = "4a17dde7-e9bf-49b0-a8f9-352c16bc7e26=" + minercost;
+			document.cookie = "8cbf5bf4-59ed-4eda-8f57-7f42e3ab3c9b=" + drills;
+				document.cookie = "f38e432c-8322-4cde-9b43-a677841ecaf9=" + drillcost;
+			document.cookie = "dbb2a3da-2202-4650-ac65-98c1c3c9df3b=" + makers;
+				document.cookie = "8dd7b8d8-e913-4616-b507-32c50a3bc9cd=" + makercost;
+			document.cookie = "cb3cf844-71d3-4626-b2d2-b362035f5efb=" + quarrys;
+				document.cookie = "6d4aa6ba-caef-4d83-818c-3b091773da6f=" + quarrycost;
+			document.cookie = "80fb6b2a-5f37-4fdb-a9de-64d9691a8f09=" istimeron(boolean);
+			document.cookie = "9ff01744-d853-4905-9b29-3efbf4b4acf2=" = millionAchivement(boolean);
+			document.cookie = "2c20da4c-a9c6-46a2-9ed6-7233a4e484a0=" = TenMinersAchivement(boolean);
+			document.getElementById("f9fadf18-1645-49f8-9898-d657aa96fb7c").innerHTML = lastSaved();
+		}
 		function diamondClick(){
 			diamonds + 1;
-			document.getElementById("diamonds").innerHTML = diamonds;
+			document.getElementById("diamonds_count").innerHTML = diamonds;
 			};
 		</script>
 	</body>

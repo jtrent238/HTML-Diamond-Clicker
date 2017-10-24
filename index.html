@@ -24,6 +24,23 @@
   				alert("You need to enable cookies for this site to load properly!");
 			}
 		</script>
+		<SCRIPT LANGUAGE="JavaScript">
+		<!-- Begin
+		netscape = (navigator.appName.indexOf("Netscape") != -1);
+		version4 = (navigator.appVersion.indexOf("4.") != -1);
+	 
+		if (netscape && version4) { 
+		ip = "" + java.net.InetAddress.getLocalHost().getHostAddress();
+		if (ip.indexOf("0.0.0.0") >= -1)  
+		// This would block anyone from 0.0.0.0
+ 
+		   {
+ 		  alert("You are not permitted to access this site.");
+		   history.go(-1);
+ 		  }
+		}
+		//  End -->
+		</script>
 		<script src="https://cdn.ravenjs.com/3.18.1/raven.min.js" crossorigin="anonymous"></script>
 		<script>
 			Raven.config('https://2bc1c33480984a7e8a83ee092d2d3cc5@sentry.io/229412').install()

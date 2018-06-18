@@ -5,7 +5,7 @@ function checkCookie() {
 		var diamonds = getCookie("fa454c5a-1d4c-4607-9d88-4f2309fb40b6");
 	}
 function pageLoad() {
-	var firstload = new boolean(true);
+	/*var firstload = new boolean(true);
 	if(firstload == true){
 		var diamonds = 0;
 		var miners = 0;
@@ -20,8 +20,8 @@ function pageLoad() {
 		var millionAchivement = new boolean(false);
 		var TenMinersAchivement = new boolean(false);
 		var firstload = new boolean(false);
-		}
-	if(firstload == false){
+		}*/
+	//if(firstload == false){
 		var diamonds = 0;
 		var miners = 0;
 		var minercost = 25;
@@ -34,7 +34,7 @@ function pageLoad() {
 		var istimeron = new boolean(true);
 		var millionAchivement = new boolean(false);
 		var TenMinersAchivement = new boolean(false);
-		}
+		//}
 }
 function saveGame() {
 			//Save cookies to browser

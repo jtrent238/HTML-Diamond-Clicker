@@ -6,6 +6,8 @@
 		<!-- <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous"> -->
 		<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
 		<link rel="stylesheet" href="assets/css/item_icons.css">
+		<link rel="stylesheet" href="assets/css/buttons.css">
+		<script src='https://kit.fontawesome.com/a076d05399.js'></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 		<script src="main.js"></script>
@@ -133,11 +135,14 @@
 						<!-- <p>Sword: </p> -->
 					<!-- </div> -->
 					<div>
-						<p>Pickaxe: </p>
+						<p>Pickaxe: <span id="pickaxe"></span></p>
+						<button class="w3-button w3-green upgrade-button" onclick="upgradeTool('pickaxe')">Upgrade <i class='fas fa-arrow-alt-circle-up'></i></button>
 					</div>
 					<div>
-						<p>Shovel: </p>
+						<p>Shovel:  <span id="shovel"></span></p>
+						<button class="w3-button w3-green upgrade-button" onclick="upgradeTool('shovel')">Upgrade <i class='fas fa-arrow-alt-circle-up'></i></button>
 					</div>
+					<br/>
 					<!-- <div> -->
 						<!-- <p>Axe: </p> -->
 					<!-- </div> -->
@@ -148,6 +153,40 @@
 
 				<footer class="w3-container w3-green">
 				  <h5>Mining Level: </h5>
+				</footer>
+
+				</div>	
+			  </div>
+			  <div class="w3-container w3-quarter">
+				<div class="w3-card-4">
+
+				<header class="w3-container w3-green">
+				  <h1>Mine</h1>
+				</header>
+
+				<div class="w3-container">
+					<!-- <div> -->
+						<!-- <p>Sword: </p> -->
+					<!-- </div> -->
+					<br/>
+					<div>
+						<button class="w3-button w3-green upgrade-button" onclick="swingTool('pickaxe')">Swing Pickaxe <i class='fas fa-arrow-alt-circle-up'></i></button>
+					</div>
+					<br/>
+					<div>
+						<button class="w3-button w3-green upgrade-button" onclick="swingTool('shovel')">Swing Shovel <i class='fas fa-arrow-alt-circle-up'></i></button>
+					</div>
+					<br/>
+					<!-- <div> -->
+						<!-- <p>Axe: </p> -->
+					<!-- </div> -->
+					<!-- <div> -->
+						<!-- <p>Hoe: </p> -->
+					<!-- </div> -->
+				</div>
+
+				<footer class="w3-container w3-green">
+				  <h5>Total Swings: <span class="w3-badge" id="totalSwings">0</span></h5>
 				</footer>
 
 				</div>	

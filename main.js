@@ -17,6 +17,7 @@
 			var axe_level = 0;
 			var hoe_level = 0;
 			
+
 	// Will execute updateValues every 0.5 seconds 
 	var updateTicker = window.setInterval(updateValues, 500);
 
@@ -63,6 +64,65 @@ function updateValues() {
 	}
 }
 
+function toolMultiplier(itemMultiply) {
+	
+	var theMultiplier = 1;
+	
+	switch(itemMultiply) {
+		
+		case 0:
+			theMultiplier = 1;
+			break;
+			
+		case 1:
+			theMultiplier = 2;
+			break;
+			
+		case 2:
+			theMultiplier = 3;
+			break;
+		
+		case 3:
+			theMultiplier = 4;
+			break;
+		
+		case 4:
+			theMultiplier = 5;
+			break;
+		
+	}
+	
+	newVal = itemMultiply * theMultiplier;
+	
+	if(debug == true) {
+		console.log("Multiply:" + newVal);
+	}
+	
+	return newVal;
+}
+
+function randomDrop(toolLevel) {
+	var randItem = 0;
+	
+	//Drops 0 - 1 Items
+	if(toolLevel == 1) {
+		var min=0; 
+		var max=1;  
+		var random = Math.floor(Math.random() * (+max - +min)) + +min; 
+		randItem = random;
+	}
+	
+	//Drops 0 - 5 Items
+	if(toolLevel == 2) {
+		var min=0; 
+		var max=5;  
+		var random = Math.floor(Math.random() * (+max - +min)) + +min; 
+		randItem = random;
+	}
+	
+	return randItem;
+}
+
 function swingTool(toolType) {
 	
 	if(debug == true) {
@@ -72,10 +132,24 @@ function swingTool(toolType) {
 	switch(toolType){
 		
 		case 'pickaxe': //Pickaxe
-			if(pickaxe_level <= 0) {
+			
+			//Level 0 = Wood
+			if(pickaxe_level == 0) { 
 				stone = stone + 1;
 				if(debug == true) {
 					console.log("stone=" + stone);
+				}
+			}
+			
+			//Level 1 = Stone
+			if(pickaxe_level == 1) { 
+				stone = stone + 1 * (toolMultiplier(1));
+				coal = coal + 1;
+				iron_ingot = iron_ingot + randomDrop(pickaxe_level);
+				if(debug == true) {
+					console.log("stone=" + stone);
+					console.log("coal=" + coal);
+					console.log("iron_ingot=" + iron_ingot);
 				}
 			}
 			
@@ -83,8 +157,18 @@ function swingTool(toolType) {
 			break;
 		
 		case 'shovel': //Shovel
-			if(shovel_level <= 0) {
+			
+			//Level 0 = Wood
+			if(shovel_level == 0) { 
 				dirt = dirt + 1;
+				if(debug == true) {
+					console.log("dirt=" + dirt);
+				}
+			}
+			
+			//Level 1 = Stone
+			if(shovel_level == 1) {
+				dirt = dirt + 1 * toolMultiplier(1);
 				if(debug == true) {
 					console.log("dirt=" + dirt);
 				}
@@ -282,6 +366,10 @@ function confirmReset() {
 }
 
 function exportGame() {
+
+}
+
+function importGame() {
 	
 }
 
@@ -304,7 +392,7 @@ function debugMaterialValues() {
 		iron_ingot = random;
 		gold_ingot = random;
 		diamond = random;
-	}
+}
 	
 function debugToolValues() {
 		var min = 0;
@@ -312,4 +400,4 @@ function debugToolValues() {
 		var random = Math.floor(Math.random() * (+max - +min)) + +min; 
 		pickaxe_level = random;
 		shovel_level = random;
-	}
+}

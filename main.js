@@ -62,7 +62,31 @@ function updateValues() {
 	if(shovel_level == 4) {
 		document.getElementById('shovel').innerHTML = "Diamond";
 	}
+	
+	// document.getElementById('buy_pickaxe').innerHTML = buy_pickaxe;
+	// document.getElementById('swing_pickaxe').innerHTML = mine_pickaxe;
+	
+	// if(pickaxe_unlocked == true) {
+		// document.getElementById('buy_pickaxe').style.display='none';
+	// }
+	
+	// if(pickaxe_unlocked == false) {
+		// document.getElementById('swing_pickaxe').style.display='none';
+	// }
 }
+
+// function updateButtons() {
+	// document.getElementById('buy_pickaxe').innerHTML = buy_pickaxe;
+	// document.getElementById('swing_pickaxe').innerHTML = mine_pickaxe;
+	
+	// if(pickaxe_unlocked == true) {
+		// document.getElementById('buy_pickaxe').style.display='none';
+	// }
+	
+	// if(pickaxe_unlocked == false) {
+		// document.getElementById('swing_pickaxe').style.display='none';
+	// }
+// }
 
 function toolMultiplier(itemMultiply) {
 	
@@ -174,10 +198,55 @@ function swingTool(toolType) {
 				}
 			}
 			
+			//Level 2 = Iron
+			if(shovel_level == 2) {
+				dirt = dirt + 2 * toolMultiplier(2);
+				if(debug == true) {
+					console.log("dirt=" + dirt);
+				}
+			}
+			
+			//Level 3 = Iron
+			if(shovel_level == 3) {
+				dirt = dirt + 3 * toolMultiplier(3);
+				if(debug == true) {
+					console.log("dirt=" + dirt);
+				}
+			}
+			
+			//Level 4 = Iron
+			if(shovel_level == 4) {
+				dirt = dirt + 4 * toolMultiplier(4);
+				if(debug == true) {
+					console.log("dirt=" + dirt);
+				}
+			}
+			
 			totalSwings = totalSwings + 1;
 			break;
 	}
 }
+
+function craftTool(toolType) {
+	
+	if(debug == true) {
+		console.log("craftTool:" + toolType);
+	}
+
+	switch(toolType) {
+		
+		case 'pickaxe': //Pickaxe
+			if(dirt >= 50000) {
+				dirt = dirt - 50000;
+				pickaxe_unlocked = true;
+				alert("Pickaxe Unlocked!");
+			} else {
+				var dirt_needed = 50000 - dirt;
+				alert("Not enough dirt! You need " + dirt_needed + " more dirt!");
+		}
+	}
+}
+
 
 function upgradeTool(toolType) {
 	
@@ -219,17 +288,18 @@ function upgradeTool(toolType) {
 		case 'shovel': //Shovel
 			//Upgrade to level 1 ( 0 -> 1)
 			if(shovel_level <= 0) {
-				if(dirt >= 1000) {
-					dirt = dirt - 1000;
+				if(dirt >= 250) {
+					dirt = dirt - 250;
 					shovel_level = shovel_level + 1;
 				} else {
-					var dirt_needed = 1000 - dirt;
-					//alert("Not enough dirt! You need " + dirt_needed + " more dirt!");
+					var dirt_needed = 250 - dirt;
+					alert("Not enough dirt! You need " + dirt_needed + " more dirt!");
 					if(debug == true) {
 						console.log("Not enough dirt! You need " + dirt_needed + " more dirt!");
 					}
 					}
 			}
+			
 			//Upgrade to level 2 ( 1 -> 2)
 			if(shovel_level <= 1) {
 				if(stone >= 1000) {
@@ -237,9 +307,51 @@ function upgradeTool(toolType) {
 					shovel_level = shovel_level + 1;
 				} else {
 					var stone_needed = 1000 - stone;
-					//alert("Not enough stone! You need " + stone_needed + " more stone!");
+					alert("Not enough stone! You need " + stone_needed + " more stone!");
 					if(debug == true) {
 						console.log("Not enough stone! You need " + stone_needed + " more stone!");
+					}
+					}
+			}
+			
+			//Upgrade to level 3 ( 2 -> 3)
+			if(shovel_level <= 2) {
+				if(iron >= 3000) {
+					iron = iron - 3000;
+					shovel_level = shovel_level + 1;
+				} else {
+					var iron_needed = 3000 - iron;
+					alert("Not enough iron! You need " + iron_needed + " more iron!");
+					if(debug == true) {
+						console.log("Not enough iron! You need " + iron_needed + " more iron!");
+					}
+					}
+			}
+			
+			//Upgrade to level 4 ( 3 -> 4)
+			if(shovel_level <= 3) {
+				if(gold >= 3000) {
+					gold = gold - 3000;
+					shovel_level = shovel_level + 1;
+				} else {
+					var gold_needed = 3000 - gold;
+					alert("Not enough gold! You need " + gold_needed + " more gold!");
+					if(debug == true) {
+						console.log("Not enough gold! You need " + gold_needed + " more gold!");
+					}
+					}
+			}
+			
+			//Upgrade to level 5 ( 4 -> 5)
+			if(shovel_level <= 4) {
+				if(diamond >= 3000) {
+					diamond = diamond - 3000;
+					shovel_level = shovel_level + 1;
+				} else {
+					var diamond_needed = 3000 - diamond;
+					alert("Not enough diamond! You need " + diamond_needed + " more diamond!");
+					if(debug == true) {
+						console.log("Not enough diamond! You need " + diamond_needed + " more diamond!");
 					}
 					}
 			}
@@ -366,7 +478,14 @@ function confirmReset() {
 }
 
 function exportGame() {
-
+	var materials = {
+		dirt: dirt,
+		stone: stone,
+		coal: coal,
+		iron_ingot: iron_ingot,
+		gold_ingot: gold_ingot,
+		diamond: diamond
+	};
 }
 
 function importGame() {

@@ -1,6 +1,10 @@
 	//Intilize variables
 		var totalSwings = 0;
 		var debug = false;
+		var pickaxe_unlocked = false;
+		var shovel_unlocked = false;
+		var axe_unlocked = false;
+		var hoe_unlocked = false;
 		
 		//Material Variables
 			var dirt = 0;
@@ -17,9 +21,14 @@
 			var axe_level = 0;
 			var hoe_level = 0;
 			
-
+	
 	// Will execute updateValues every 0.5 seconds 
-	var updateTicker = window.setInterval(updateValues, 500);
+	var updateTicker = window.setInterval(updatePage, 500);
+
+function updatePage() {
+	updateValues();
+	updateButtons();
+}
 
 function updateValues() {
 	
@@ -62,31 +71,21 @@ function updateValues() {
 	if(shovel_level == 4) {
 		document.getElementById('shovel').innerHTML = "Diamond";
 	}
-	
-	// document.getElementById('buy_pickaxe').innerHTML = buy_pickaxe;
-	// document.getElementById('swing_pickaxe').innerHTML = mine_pickaxe;
-	
-	// if(pickaxe_unlocked == true) {
-		// document.getElementById('buy_pickaxe').style.display='none';
-	// }
-	
-	// if(pickaxe_unlocked == false) {
-		// document.getElementById('swing_pickaxe').style.display='none';
-	// }
 }
 
-// function updateButtons() {
-	// document.getElementById('buy_pickaxe').innerHTML = buy_pickaxe;
-	// document.getElementById('swing_pickaxe').innerHTML = mine_pickaxe;
+function updateButtons() {
+	document.getElementById('craft_pickaxe').innerHTML = "Craft Pickaxe";
+	document.getElementById('swing_pickaxe').innerHTML = "Swing Pickaxe";
 	
-	// if(pickaxe_unlocked == true) {
-		// document.getElementById('buy_pickaxe').style.display='none';
-	// }
+	if(pickaxe_unlocked == true) {
+		document.getElementById('craft_pickaxe').style.display='none';
+		document.getElementById('swing_pickaxe').style.display='block';
+	}
 	
-	// if(pickaxe_unlocked == false) {
-		// document.getElementById('swing_pickaxe').style.display='none';
-	// }
-// }
+	if(pickaxe_unlocked == false) {
+		document.getElementById('swing_pickaxe').style.display='none';
+	}
+}
 
 function toolMultiplier(itemMultiply) {
 	
@@ -316,11 +315,11 @@ function upgradeTool(toolType) {
 			
 			//Upgrade to level 3 ( 2 -> 3)
 			if(shovel_level <= 2) {
-				if(iron >= 3000) {
-					iron = iron - 3000;
+				if(iron_ingot >= 3000) {
+					iron_ingot = iron_ingot - 3000;
 					shovel_level = shovel_level + 1;
 				} else {
-					var iron_needed = 3000 - iron;
+					var iron_needed = 3000 - iron_ingot;
 					alert("Not enough iron! You need " + iron_needed + " more iron!");
 					if(debug == true) {
 						console.log("Not enough iron! You need " + iron_needed + " more iron!");
@@ -330,11 +329,11 @@ function upgradeTool(toolType) {
 			
 			//Upgrade to level 4 ( 3 -> 4)
 			if(shovel_level <= 3) {
-				if(gold >= 3000) {
-					gold = gold - 3000;
+				if(gold_ingot >= 3000) {
+					gold_ingot = _ingot - 3000;
 					shovel_level = shovel_level + 1;
 				} else {
-					var gold_needed = 3000 - gold;
+					var gold_needed = 3000 - gold_ingot;
 					alert("Not enough gold! You need " + gold_needed + " more gold!");
 					if(debug == true) {
 						console.log("Not enough gold! You need " + gold_needed + " more gold!");
@@ -355,6 +354,14 @@ function upgradeTool(toolType) {
 					}
 					}
 			}
+			
+			//Upgrade MAX
+			// if(shovel_level <=5) {
+				// alert("Shovel is at MAX Level!");
+				// if(debug == true) {
+					// console.log("ERROR: Shovel is at MAX Level!");
+				// }
+			// }
 			break;
 	}
 }
@@ -533,22 +540,26 @@ function debugValues() {
 }
 
 function debugMaterialValues() {
+		
 		var min=0; 
-		var max=1000;  
-		var random = Math.floor(Math.random() * (+max - +min)) + +min; 
+		var max=100000; 
+		
 		// Assign random variables for testing
-		dirt = random;
-		stone = random;
-		coal = random;
-		iron_ingot = random;
-		gold_ingot = random;
-		diamond = random;
+		dirt = Math.floor(Math.random() * (+max - +min)) + +min; 
+		stone = Math.floor(Math.random() * (+max - +min)) + +min; 
+		coal = Math.floor(Math.random() * (+max - +min)) + +min; 
+		iron_ingot = Math.floor(Math.random() * (+max - +min)) + +min; 
+		gold_ingot = Math.floor(Math.random() * (+max - +min)) + +min; 
+		diamond = Math.floor(Math.random() * (+max - +min)) + +min; 
 }
 	
 function debugToolValues() {
-		var min = 0;
-		var max = 5;
-		var random = Math.floor(Math.random() * (+max - +min)) + +min; 
-		pickaxe_level = random;
-		shovel_level = random;
+	
+		var min=0; 
+		var max=5; 
+				
+		pickaxe_level = Math.floor(Math.random() * (+max - +min)) + +min; 
+		shovel_level = Math.floor(Math.random() * (+max - +min)) + +min; 
+		//axe_level = Math.floor(Math.random() * (+max - +min)) + +min; 
+		//hoe_level = Math.floor(Math.random() * (+max - +min)) + +min; 
 }

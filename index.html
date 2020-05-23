@@ -146,7 +146,7 @@
 				  <h1>Upgrades</h1>
 				</header>
 
-				<div class="w3-container">
+				<div class="w3-container w3-red">
 					<!-- <div> -->
 						<!-- <p>Sword: </p> -->
 					<!-- </div> -->
@@ -180,17 +180,18 @@
 				  <h1>Mine</h1>
 				</header>
 
-				<div class="w3-container">
+				<div class="w3-container w3-red">
 					<!-- <div> -->
 						<!-- <p>Sword: </p> -->
 					<!-- </div> -->
 					<br/>
 					<div>
-						<button class="w3-button w3-green upgrade-button" onclick="swingTool('pickaxe')">Swing Pickaxe <i class='fas fa-arrow-alt-circle-up'></i></button>
+						<button class="w3-button w3-green swing-button" id="swing_pickaxe" onclick="swingTool('pickaxe')">Swing Pickaxe <i class='fas fa-arrow-alt-circle-up'></i></button>
+						<button class="w3-button w3-green craft-button" id="craft_pickaxe" onclick="craftTool('pickaxe')">Craft Pickaxe <i class='fas fa-arrow-alt-circle-up'></i></button>
 					</div>
 					<br/>
 					<div>
-						<button class="w3-button w3-green upgrade-button" onclick="swingTool('shovel')">Swing Shovel <i class='fas fa-arrow-alt-circle-up'></i></button>
+						<button class="w3-button w3-green swing-button" onclick="swingTool('shovel')">Swing Shovel <i class='fas fa-arrow-alt-circle-up'></i></button>
 					</div>
 					<br/>
 					<!-- <div> -->
@@ -211,7 +212,7 @@
 		</div>
 		<br/>
 		<div class="w3-container">
-			<div class="w3-card-4">
+			<div class="w3-card-4 w3-red">
 
 				<header class="w3-container w3-green">
 				  <h1>Game Settings</h1>
@@ -235,6 +236,8 @@
 	</div>
 	
 	<footer>
-		<div class="paragraph">This is just an html version of the game Diamond Clicker that I am working on, because not everyone can run the ".exe" file of the game.<br>Want to enjoy the real game:&nbsp;<a target="_blank" href="http://bit.ly/2cMjerP">bit.ly/2cMjerP</a><br>By:&nbsp;KristinnVikarJ&#8203; (<a target="_blank" href="http://bit.ly/2c6Zznw">bit.ly/2c6Zznw</a>)</div>
+		<div class="paragraph">
+			<p class="disclaimer">This is just an html version of the game Diamond Clicker that I am working on, because not everyone can run the ".exe" file of the game.<br>Want to enjoy the real game:&nbsp;<a target="_blank" href="http://bit.ly/2cMjerP">bit.ly/2cMjerP</a><br>By:&nbsp;KristinnVikarJ&#8203; (<a target="_blank" href="http://bit.ly/2c6Zznw">bit.ly/2c6Zznw</a>)</p>
+		</div>
 	</footer>
 </html>

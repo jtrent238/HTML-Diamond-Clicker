@@ -487,7 +487,26 @@ function exportGame() {
 			iron_ingot: iron_ingot,
 			gold_ingot: gold_ingot,
 			diamond: diamond
-		}
+		}//,
+		// tools: {
+			// pickaxe: {
+				// unlocked: pickaxe_unlocked,
+				// level: pickaxe_level
+			// },
+			// shovel: {
+				// unlocked: shovel_unlocked,
+				// level: shovel_level
+			// },
+			// axe: {
+				// unlocked: axe_unlocked,
+				// level: axe_level
+			// },
+			// hoe: {
+				// unlocked: hoe_unlocked,
+				// level: hoe_level
+			// },
+		// swings: swings,
+		// }
 	};
 	
 	let dataStr = JSON.stringify(jsonData);

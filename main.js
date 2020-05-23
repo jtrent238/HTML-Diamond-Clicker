@@ -478,14 +478,27 @@ function confirmReset() {
 }
 
 function exportGame() {
-	var materials = {
-		dirt: dirt,
-		stone: stone,
-		coal: coal,
-		iron_ingot: iron_ingot,
-		gold_ingot: gold_ingot,
-		diamond: diamond
+	
+	var jsonData = {
+		materials: {
+			dirt: dirt,
+			stone: stone,
+			coal: coal,
+			iron_ingot: iron_ingot,
+			gold_ingot: gold_ingot,
+			diamond: diamond
+		}
 	};
+	
+	let dataStr = JSON.stringify(jsonData);
+	let dataUrl = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
+	
+	let exportFileDefaultName = 'save-' + Date.now() + '.json';
+	
+	let linkElement = document.createElement('a');
+	linkElement.setAttribute('href', dataUrl);
+	linkElement.setAttribute('download', exportFileDefaultName);
+	linkElement.click();
 }
 
 function importGame() {

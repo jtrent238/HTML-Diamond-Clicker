@@ -152,11 +152,12 @@
 					<!-- </div> -->
 					<div>
 						<p>Pickaxe: <span id="pickaxe"></span></p>
-						<button class="w3-button w3-green upgrade-button" onclick="upgradeTool('pickaxe')">Upgrade <i class='fas fa-arrow-alt-circle-up'></i></button>
+						<button class="w3-button w3-green upgrade-button" id="upgrade_pickaxe_disabled" onclick="upgradeTool('pickaxe')">Upgrade <i class='fas fa-arrow-alt-circle-up'></i></button>
+						<button class="w3-button w3-green upgrade-button" id="upgrade_pickaxe_enabled" onclick="upgradeTool('pickaxe')">Upgrade <i class='fas fa-arrow-alt-circle-up'></i></button>
 					</div>
 					<div>
 						<p>Shovel:  <span id="shovel"></span></p>
-						<button class="w3-button w3-green upgrade-button" onclick="upgradeTool('shovel')">Upgrade <i class='fas fa-arrow-alt-circle-up'></i></button>
+						<button class="w3-button w3-green upgrade-button" id="upgrade_shovel" onclick="upgradeTool('shovel')">Upgrade <i class='fas fa-arrow-alt-circle-up'></i></button>
 					</div>
 					<br/>
 					<!-- <div> -->
@@ -191,7 +192,7 @@
 					</div>
 					<br/>
 					<div>
-						<button class="w3-button w3-green swing-button" onclick="swingTool('shovel')">Swing Shovel <i class='fas fa-arrow-alt-circle-up'></i></button>
+						<button class="w3-button w3-green swing-button" onclick="swingTool('shovel')">Swing Shovel</button>
 					</div>
 					<br/>
 					<!-- <div> -->

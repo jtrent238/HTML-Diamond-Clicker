@@ -1,10 +1,11 @@
 	//Intilize variables
 		var totalSwings = 0;
-		var debug = false;
+		var debug = true;
 		var pickaxe_unlocked = false;
-		var shovel_unlocked = false;
+		var shovel_unlocked = true;
 		var axe_unlocked = false;
 		var hoe_unlocked = false;
+		var sword_unlocked = false;
 		
 		//Material Variables
 			var dirt = 0;
@@ -20,10 +21,16 @@
 			var shovel_level = 0;
 			var axe_level = 0;
 			var hoe_level = 0;
+			var sword_leve = 0;
 			
 	
 	// Will execute updateValues every 0.5 seconds 
 	var updateTicker = window.setInterval(updatePage, 500);
+
+function notSupported() {
+	alert("This feature is not supported yet!");
+	console.log("ERROR: This feature is not supported yet!");
+}
 
 function updatePage() {
 	updateValues();
@@ -42,34 +49,34 @@ function updateValues() {
 	document.getElementById('diamond_count').innerHTML = diamond;
 
 	if(pickaxe_level == 0) {
-		document.getElementById('pickaxe').innerHTML = "Wood";
+		document.getElementById('pickaxe').innerHTML = 'Wood <img class="wooden_pickaxe" id="wooden_pickaxe" src="assets/img/item_icons/wooden_pickaxe.png" />';
 	}
 	if(pickaxe_level == 1) {
-		document.getElementById('pickaxe').innerHTML = "Stone";
+		document.getElementById('pickaxe').innerHTML = 'Stone <img class="stone_pickaxe" id="stone_pickaxe" src="assets/img/item_icons/stone_pickaxe.png" />';
 	}
 	if(pickaxe_level == 2) {
-		document.getElementById('pickaxe').innerHTML = "Iron";
+		document.getElementById('pickaxe').innerHTML = 'Iron <img class="iron_pickaxe" id="iron_pickaxe" src="assets/img/item_icons/iron_pickaxe.png" />';
 	}
 	if(pickaxe_level == 3) {
-		document.getElementById('pickaxe').innerHTML = "Gold";
+		document.getElementById('pickaxe').innerHTML = 'Gold <img class="golden_pickaxe" id="golden_pickaxe" src="assets/img/item_icons/golden_pickaxe.png" />';
 	}
 	if(pickaxe_level == 4) {
-		document.getElementById('pickaxe').innerHTML = "Diamond";
+		document.getElementById('pickaxe').innerHTML = 'Diamond <img class="diamond_pickaxe" id="diamond_pickaxe" src="assets/img/item_icons/diamond_pickaxe.png" />';
 	}
 	if(shovel_level == 0) {
-		document.getElementById('shovel').innerHTML = "Wood";
+		document.getElementById('shovel').innerHTML = 'Wood <img class="wooden_pickaxe" id="wooden_pickaxe" src="assets/img/item_icons/wooden_shovel.png" />';
 	}
 	if(shovel_level == 1) {
-		document.getElementById('shovel').innerHTML = "Stone";
+		document.getElementById('shovel').innerHTML = 'Stone <img class="stone_pickaxe" id="stone_pickaxe" src="assets/img/item_icons/stone_shovel.png" />';
 	}
 	if(shovel_level == 2) {
-		document.getElementById('shovel').innerHTML = "Iron";
+		document.getElementById('shovel').innerHTML = 'Iron <img class="iron_pickaxe" id="iron_pickaxe" src="assets/img/item_icons/iron_shovel.png" />';
 	}
 	if(shovel_level == 3) {
-		document.getElementById('shovel').innerHTML = "Gold";
+		document.getElementById('shovel').innerHTML = 'Gold <img class="golden_pickaxe" id="golden_pickaxe" src="assets/img/item_icons/golden_shovel.png" />';
 	}
 	if(shovel_level == 4) {
-		document.getElementById('shovel').innerHTML = "Diamond";
+		document.getElementById('shovel').innerHTML = 'Diamond <img class="diamond_pickaxe" id="diamond_pickaxe" src="assets/img/item_icons/diamond_shovel.png" />';
 	}
 }
 
@@ -80,13 +87,48 @@ function updateButtons() {
 	if(pickaxe_unlocked == true) {
 		document.getElementById('craft_pickaxe').style.display='none';
 		document.getElementById('swing_pickaxe').style.display='block';
+		document.getElementById('upgrade_pickaxe_enabled').style.display='block';
+		document.getElementById('upgrade_pickaxe_disabled').style.display='none';
 	}
 	
 	if(pickaxe_unlocked == false) {
 		document.getElementById('swing_pickaxe').style.display='none';
+		document.getElementById('upgrade_pickaxe_enabled').style.display='none';
+		document.getElementById('upgrade_pickaxe_disabled').style.display='block';
 	}
 }
 
+function trackTime() {
+	let startDate = new Date();
+	let elapsedTime = 0;
+
+	const focus = function() {
+		startDate = new Date();
+	};
+
+	const blur = function() {
+		const endDate = new Date();
+		const spentTime = endDate.getTime() - startDate.getTime();
+		elapsedTime += spentTime;
+	};
+
+	const beforeunload = function() {
+		const endDate = new Date();
+		const spentTime = endDate.getTime() - startDate.getTime();
+		elapsedTime += spentTime;
+
+		// elapsedTime contains the time spent on page in milliseconds
+	};
+
+	window.addEventListener('focus', focus);
+	window.addEventListener('blur', blur);
+	window.addEventListener('beforeunload', beforeunload);
+	
+	if(debug == true) {
+		console.log("startDate: " + startDate);
+		console.log("elapsedTime: " + elapsedTime);
+	}
+}
 function toolMultiplier(itemMultiply) {
 	
 	var theMultiplier = 1;
@@ -143,6 +185,30 @@ function randomDrop(toolLevel) {
 		randItem = random;
 	}
 	
+	//Drops 0 - 15 Items
+	if(toolLevel == 3) {
+		var min=0; 
+		var max=15;  
+		var random = Math.floor(Math.random() * (+max - +min)) + +min; 
+		randItem = random;
+	}
+	
+	//Drops 0 - 30 Items
+	if(toolLevel == 3) {
+		var min=0; 
+		var max=30;  
+		var random = Math.floor(Math.random() * (+max - +min)) + +min; 
+		randItem = random;
+	}
+	
+	//Drops 0 - 50 Items
+	if(toolLevel == 4) {
+		var min=0; 
+		var max=50;  
+		var random = Math.floor(Math.random() * (+max - +min)) + +min; 
+		randItem = random;
+	}
+	
 	return randItem;
 }
 
@@ -166,13 +232,59 @@ function swingTool(toolType) {
 			
 			//Level 1 = Stone
 			if(pickaxe_level == 1) { 
-				stone = stone + 1 * (toolMultiplier(1));
+				stone = stone + 1 * (toolMultiplier(pickaxe_level));
 				coal = coal + 1;
 				iron_ingot = iron_ingot + randomDrop(pickaxe_level);
 				if(debug == true) {
 					console.log("stone=" + stone);
 					console.log("coal=" + coal);
 					console.log("iron_ingot=" + iron_ingot);
+				}
+			}
+			
+			//Level 2 = Iron
+			if(pickaxe_level == 2) {
+				stone = stone + 2 * toolMultiplier(pickaxe_level);
+				coal = coal + 2 * toolMultiplier(pickaxe_level);
+				iron_ingot = iron_ingot + randomDrop(pickaxe_level);
+				gold_ingot = gold_ingot + randomDrop(pickaxe_level);
+				if(debug == true) {
+					console.log("stone=" + stone);
+					console.log("coal=" + coal);
+					console.log("iron_ingot=" + iron_ingot);
+					console.log("gold_ingot=" + gold_ingot);
+				}
+			}
+			
+			//Level 3 = Gold
+			if(pickaxe_level == 3) {
+				stone = stone + 3 * toolMultiplier(pickaxe_level);
+				coal = coal + 3 * toolMultiplier(pickaxe_level);
+				iron_ingot = iron_ingot + randomDrop(pickaxe_level * 3);
+				gold_ingot = gold_ingot + randomDrop(pickaxe_level * 3);
+				diamond = diamond + randomDrop(pickaxe_level);
+				if(debug == true) {
+					console.log("stone=" + stone);
+					console.log("coal=" + coal);
+					console.log("iron_ingot=" + iron_ingot);
+					console.log("gold_ingot=" + gold_ingot);
+					console.log("diamond=" + diamond);
+				}
+			}
+			
+			//Level 4 = Diamond
+			if(pickaxe_level == 4) {
+				stone = stone + pickaxe_level * toolMultiplier(pickaxe_level);
+				coal = coal + 4 * toolMultiplier(pickaxe_level);
+				iron_ingot = iron_ingot + randomDrop(pickaxe_level);
+				gold_ingot = gold_ingot + randomDrop(pickaxe_level);
+				diamond = diamond + randomDrop(pickaxe_level);
+				if(debug == true) {
+					console.log("stone=" + stone);
+					console.log("coal=" + coal);
+					console.log("iron_ingot=" + iron_ingot);
+					console.log("gold_ingot=" + gold_ingot);
+					console.log("diamond=" + diamond);
 				}
 			}
 			
@@ -205,7 +317,7 @@ function swingTool(toolType) {
 				}
 			}
 			
-			//Level 3 = Iron
+			//Level 3 = Gold
 			if(shovel_level == 3) {
 				dirt = dirt + 3 * toolMultiplier(3);
 				if(debug == true) {
@@ -213,7 +325,7 @@ function swingTool(toolType) {
 				}
 			}
 			
-			//Level 4 = Iron
+			//Level 4 = Diamond
 			if(shovel_level == 4) {
 				dirt = dirt + 4 * toolMultiplier(4);
 				if(debug == true) {
@@ -235,12 +347,12 @@ function craftTool(toolType) {
 	switch(toolType) {
 		
 		case 'pickaxe': //Pickaxe
-			if(dirt >= 50000) {
-				dirt = dirt - 50000;
+			if(dirt >= 5000) {
+				dirt = dirt - 5000;
 				pickaxe_unlocked = true;
 				alert("Pickaxe Unlocked!");
 			} else {
-				var dirt_needed = 50000 - dirt;
+				var dirt_needed = 5000 - dirt;
 				alert("Not enough dirt! You need " + dirt_needed + " more dirt!");
 		}
 	}
@@ -253,13 +365,13 @@ function upgradeTool(toolType) {
 		console.log("upgradeTool:" + toolType);
 	}
 	
-	switch(toolType){
-		
-		case 'pickaxe': //Pickaxe
+	
+		if(toolType == 'pickaxe') {
+		//Pickaxe
 			//Upgrade to level 1 ( 0 -> 1)
 			if(pickaxe_level <= 0) {
 				if(dirt >= 1000) {
-					dirt = dirt - 1000;
+					dirt = dirt - 1000 * pickaxe_level;
 					pickaxe_level = pickaxe_level + 1;
 				} else {
 					var dirt_needed = 1000 - dirt;
@@ -267,12 +379,12 @@ function upgradeTool(toolType) {
 					if(debug == true) {
 						console.log("Not enough dirt! You need " + dirt_needed + " more dirt!");
 					}
-					}
+				}
 			}
 			//Upgrade to level 2 ( 1 -> 2)
-			if(pickaxe_level <= 1) {
-				if(stone >= 1000) {
-					stone = stone - 1000;
+			else if(pickaxe_level <= 1) {
+				if(stone >= 1000 * pickaxe_level) {
+					stone = stone - 1000 * pickaxe_level;
 					pickaxe_level = pickaxe_level + 1;
 				} else {
 					var stone_needed = 1000 - stone;
@@ -280,11 +392,62 @@ function upgradeTool(toolType) {
 					if(debug == true) {
 						console.log("Not enough stone! You need " + stone_needed + " more stone!");
 					}
-					}
+				}
 			}
-			break;
 			
-		case 'shovel': //Shovel
+			//Upgrade to level 3 ( 2 -> 3)
+			else if(pickaxe_level <= 2) {
+				if(iron_ingot >= 1000 * pickaxe_level) {
+					iron_ingot = iron_ingot - 1000 * pickaxe_level;
+					pickaxe_level = pickaxe_level + 1;
+				} else {
+					var iron_needed = 1000 - iron_ingot;
+					//alert("Not enough iron! You need " + iron_needed + " more iron!");
+					if(debug == true) {
+						console.log("Not enough iron! You need " + iron_needed + " more iron!");
+					}
+				}
+			}
+			
+			//Upgrade to level 4 ( 3 -> 4)
+			else if(pickaxe_level <= 3) {
+				if(gold_ingot >= 1000 * pickaxe_level) {
+					gold_ingot = gold_ingot - 1000 * pickaxe_level;
+					pickaxe_level = pickaxe_level + 1;
+				} else {
+					var gold_needed = 1000 - gold_ingot;
+					//alert("Not enough gold! You need " + gold_needed + " more gold!");
+					if(debug == true) {
+						console.log("Not enough gold! You need " + gold_needed + " more gold!");
+					}
+				}
+			}
+			
+			//Upgrade to level 5 ( 4 -> 5)
+			else if(pickaxe_level <= 4) {
+				if(diamond >= 1000 * pickaxe_level) {
+					diamond = diamond - 1000 * pickaxe_level;
+					pickaxe_level = pickaxe_level + 1;
+				} else {
+					var diamond_needed = 1000 - diamond;
+					//alert("Not enough diamond! You need " + diamond_needed + " more diamond!");
+					if(debug == true) {
+						console.log("Not enough diamond! You need " + diamond_needed + " more diamond!");
+					}
+				}
+			}
+			
+			//Upgrade MAX
+			 else if(pickaxe_level <=5) {
+				 alert("Pickaxe is at MAX Level!");
+				 if(debug == true) {
+					 console.log("ERROR: Pickaxe is at MAX Level!");
+				 }
+			 }
+		}
+			
+		if(toolType == 'shovel'){
+		 //Shovel
 			//Upgrade to level 1 ( 0 -> 1)
 			if(shovel_level <= 0) {
 				if(dirt >= 250) {
@@ -300,7 +463,7 @@ function upgradeTool(toolType) {
 			}
 			
 			//Upgrade to level 2 ( 1 -> 2)
-			if(shovel_level <= 1) {
+			else if(shovel_level <= 1) {
 				if(stone >= 1000) {
 					stone = stone - 1000;
 					shovel_level = shovel_level + 1;
@@ -314,7 +477,7 @@ function upgradeTool(toolType) {
 			}
 			
 			//Upgrade to level 3 ( 2 -> 3)
-			if(shovel_level <= 2) {
+			else if(shovel_level <= 2) {
 				if(iron_ingot >= 3000) {
 					iron_ingot = iron_ingot - 3000;
 					shovel_level = shovel_level + 1;
@@ -328,9 +491,9 @@ function upgradeTool(toolType) {
 			}
 			
 			//Upgrade to level 4 ( 3 -> 4)
-			if(shovel_level <= 3) {
+			else if(shovel_level <= 3) {
 				if(gold_ingot >= 3000) {
-					gold_ingot = _ingot - 3000;
+					gold_ingot = gold_ingot - 3000;
 					shovel_level = shovel_level + 1;
 				} else {
 					var gold_needed = 3000 - gold_ingot;
@@ -342,7 +505,7 @@ function upgradeTool(toolType) {
 			}
 			
 			//Upgrade to level 5 ( 4 -> 5)
-			if(shovel_level <= 4) {
+			else if(shovel_level <= 4) {
 				if(diamond >= 3000) {
 					diamond = diamond - 3000;
 					shovel_level = shovel_level + 1;
@@ -356,14 +519,14 @@ function upgradeTool(toolType) {
 			}
 			
 			//Upgrade MAX
-			// if(shovel_level <=5) {
-				// alert("Shovel is at MAX Level!");
-				// if(debug == true) {
-					// console.log("ERROR: Shovel is at MAX Level!");
-				// }
-			// }
-			break;
-	}
+			 else if(shovel_level <=5) {
+				 alert("Shovel is at MAX Level!");
+				 if(debug == true) {
+					 console.log("ERROR: Shovel is at MAX Level!");
+				 }
+			 }
+			}
+	
 }
 
 function saveGame() {
@@ -414,7 +577,7 @@ function saveGame() {
 }
 
 function loadGame() {
-	
+	notSupported();
 }
 
 function resetGame() {
@@ -494,26 +657,37 @@ function exportGame() {
 			iron_ingot: iron_ingot,
 			gold_ingot: gold_ingot,
 			diamond: diamond
-		}//,
-		// tools: {
-			// pickaxe: {
-				// unlocked: pickaxe_unlocked,
-				// level: pickaxe_level
-			// },
-			// shovel: {
-				// unlocked: shovel_unlocked,
-				// level: shovel_level
-			// },
-			// axe: {
-				// unlocked: axe_unlocked,
-				// level: axe_level
-			// },
-			// hoe: {
-				// unlocked: hoe_unlocked,
-				// level: hoe_level
-			// },
-		// swings: swings,
-		// }
+		},
+		tools: {
+			pickaxe: {
+				unlocked: pickaxe_unlocked,
+				level: pickaxe_level
+			},
+			shovel: {
+				unlocked: shovel_unlocked,
+				level: shovel_level
+			},
+			axe: {
+				unlocked: axe_unlocked,
+				level: axe_level
+			},
+			hoe: {
+				unlocked: hoe_unlocked,
+				level: hoe_level
+			},
+			sword: {
+				unlocked: sword_unlocked,
+				level: sword_level
+			}
+		},
+		swings: {
+			pickaxe_swings: null,
+			shovel_swings: null,
+			axe_swings: null,
+			hoe_swings: null,
+			sword_swings: null,
+			total_swings: totalSwings
+		}
 	};
 	
 	let dataStr = JSON.stringify(jsonData);
@@ -528,7 +702,7 @@ function exportGame() {
 }
 
 function importGame() {
-	
+	notSupported();
 }
 
 function debugValues() {
